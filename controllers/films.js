@@ -29,5 +29,13 @@ filmRouter.post('/', function(req, res){
   res.json({data: films});
 })
 
+//delete film
+
+filmRouter.delete('/:id', function(req, res){
+  const index = req.params.id;
+  films.splice(index, 1);
+  res.json({data: films});
+})
+
 
 module.exports = filmRouter;
