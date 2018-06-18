@@ -15,6 +15,13 @@ filmRouter.get('/', function(req, res){
   res.json(films);
 })
 
+//update film at id
+filmRouter.put('/:id', function(req, res){
+  const index = req.params.id;
+  films[index] = new Film(req.body);
+  res.json({data: films});
+})
+
 //add film
 filmRouter.post('/', function(req, res){
   const newFilm = new Film(req.body);
