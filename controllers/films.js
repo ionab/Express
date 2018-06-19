@@ -10,9 +10,18 @@ filmRouter.get('/:id', function(req, res){
   res.json({data: films[index]});
 })
 
+
 //show all films
 filmRouter.get('/', function(req, res){
   res.json(films);
+})
+//add a new review
+filmRouter.post("/:id/review", function(req, res){
+  const review = new Review(req.body);
+  const index = req.params.id;
+  const film = films[index];
+  film.addReview(review);
+  res.json({data: films});
 })
 
 //update film at id
@@ -30,12 +39,13 @@ filmRouter.post('/', function(req, res){
 })
 
 //delete film
-
 filmRouter.delete('/:id', function(req, res){
   const index = req.params.id;
   films.splice(index, 1);
   res.json({data: films});
 })
+
+
 
 
 module.exports = filmRouter;
